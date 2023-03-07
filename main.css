@@ -55,6 +55,12 @@ footer a {
   color: rgb(118, 190, 210);
 }
 
+.help {
+  flex: 1;
+  width: 100%;
+  padding: 0.5em;
+}
+
 .game {
   background: rgb(0, 0, 0);
   border-radius: 50%;
@@ -144,6 +150,10 @@ footer a {
   transform: translateX(-50%) translateY(-50%);
 }
 
+.no-bullet {
+  list-style-type: none;
+}
+
 @media (max-height: 500px) {
   header {
     display: none;
@@ -153,5 +163,17 @@ footer a {
   }
   main {
     flex: 1 100vh;
+  }
+}
+
+@media (orientation: portrait) {
+  .help {
+    display: none;
+  }
+}
+
+@media (max-width:1025px) {
+  .help {
+    display: none;
   }
 }

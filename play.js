@@ -5,6 +5,13 @@ const btnDescriptions = [
   { file: 'sound4.mp3', hue: 240 },
 ];
 
+const keyMapping = {
+  KeyW: "green",
+  KeyE: "red",
+  KeyS: "yellow",
+  KeyD: "blue",
+}
+
 class Button {
   constructor(description, el) {
     this.el = el;
@@ -176,3 +183,16 @@ function delay(milliseconds) {
 function loadSound(filename) {
   return new Audio('assets/' + filename);
 }
+
+document.addEventListener('keydown', (event) => {
+  let name = event.key;
+  let code = event.code;
+
+  if (Object.keys(keyMapping).includes(code)) {
+    game.pressButton(document.getElementById(keyMapping[code]))
+  }
+  // // Alert the key name and key code on keydown
+  // alert(`Key pressed ${name} \r\n Key code value: ${code}`);
+}, false);
+
+
