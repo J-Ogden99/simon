@@ -5,13 +5,6 @@ const btnDescriptions = [
   { file: 'sound4.mp3', hue: 240 },
 ];
 
-const keyMapping = {
-  KeyW: "green",
-  KeyE: "red",
-  KeyS: "yellow",
-  KeyD: "blue",
-}
-
 class Button {
   constructor(description, el) {
     this.el = el;
@@ -170,7 +163,40 @@ class Game {
   }
 }
 
+class KeyMapping {
+  map;
+  colors;
+  constructor() {
+    this.map = {
+      KeyW: "green",
+      KeyE: "red",
+      KeyS: "yellow",
+      KeyD: "blue",
+    }
+
+    let buttonHelpList = document.getElementById('shortcuts-lst');
+    this.colors = ["Green", "Red", "Yellow", "Blue"];
+    Object.keys(this.map).forEach((key, index) => {
+      buttonHelpList.innerHTML += `<li>${key[3]} -> ${this.colors[index]}</li>`;
+    });
+
+    document.addEventListener('keydown', (event) => {
+      let name = event.key;
+      let code = event.code;
+
+      if (Object.keys(this.map).includes(code)) {
+        game.pressButton(document.getElementById(this.map[code]))
+      }
+      // // Alert the key name and key code on keydown
+      // alert(`Key pressed ${name} \r\n Key code value: ${code}`);
+    }, false);
+  }
+
+
+}
+
 const game = new Game();
+const keyMapping = new KeyMapping();
 
 function delay(milliseconds) {
   return new Promise((resolve) => {
@@ -183,16 +209,3 @@ function delay(milliseconds) {
 function loadSound(filename) {
   return new Audio('assets/' + filename);
 }
-
-document.addEventListener('keydown', (event) => {
-  let name = event.key;
-  let code = event.code;
-
-  if (Object.keys(keyMapping).includes(code)) {
-    game.pressButton(document.getElementById(keyMapping[code]))
-  }
-  // // Alert the key name and key code on keydown
-  // alert(`Key pressed ${name} \r\n Key code value: ${code}`);
-}, false);
-
-
