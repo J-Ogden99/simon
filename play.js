@@ -190,9 +190,14 @@ class KeyMapping {
       // // Alert the key name and key code on keydown
       // alert(`Key pressed ${name} \r\n Key code value: ${code}`);
     }, false);
-  }
+  };
 
-
+  // remap () {
+  //
+  // };
+  // saveRemap () {
+  //
+  // };
 }
 
 const game = new Game();
